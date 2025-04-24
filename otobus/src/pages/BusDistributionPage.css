@@ -1,0 +1,99 @@
+/* src/pages/BusDistributionPage.css */
+.bus-distribution-page {
+  padding: 20px;
+  background-color: #F2F2F2;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.distribution-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 20px auto;
+}
+
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto; /* Mobilde tablo taşarsa kaydırma olur */
+}
+
+.table-container table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-container th {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.bus-distribution-page.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.bus-distribution-page.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+.bus-distribution-page.dark-mode table {
+  border-color: #fff;
+}
+
+.bus-distribution-page.light-mode table {
+  border-color: #000;
+}
+
+/* Dark mode için başlık yazı rengi */
+.bus-distribution-page.dark-mode th {
+  color: #fff !important;
+  background-color: #444;
+}
+
+/* Light Mode başlık yazı rengi */
+.bus-distribution-page.light-mode th {
+  color: #000;
+  background-color: #f2f2f2;
+}
+
+.bus-distribution-page.dark-mode .distribution-title {
+  color: #fff;
+}
+
+/* --------- Mobil Uyum için Media Query --------- */
+@media (max-width: 600px) {
+  .distribution-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .table-container table {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .table-container th,
+  .table-container td {
+    padding: 6px;
+  }
+}

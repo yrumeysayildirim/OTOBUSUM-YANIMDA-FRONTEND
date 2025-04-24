@@ -1,0 +1,262 @@
+/* Arka plan rengi ve temel yazı tipleri */
+
+.home-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #F2F2F2; 
+  min-height: 100dvh;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 56px;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Üst Kısım */
+.header-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('silhouette.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.header-section {
+  position: relative;
+  height: 150px;  
+  display: flex;
+  margin-bottom: 0%;
+  margin-left: 0%;
+}
+
+/* Silüet Arka Plan */
+.silhouette-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: url('silhouette.png') no-repeat center center;
+  background-size: cover;  
+  opacity: 0.2; 
+}
+
+.full-size-img{
+  display: block;
+  width: 100%;         
+  height: auto;        
+  object-fit: cover;   
+}
+
+/* Başlık */
+.app-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Arama Çubuğu Bölümü */
+.search-section {
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+  gap: 8px;
+}
+
+.search-input {
+  width: 220px;
+  padding: 8px 12px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+}
+
+.search-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.search-button:hover {
+  background-color: #2563eb;
+}
+
+.search-error {
+  text-align: center;
+  color: #d63333;
+  margin-bottom: 15px; /* Arama kısmıyla arasındaki boşluğu artırdık */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+/* Kartlar (4 Adet) */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-gap: 15px;
+  padding: 0 15px;
+  margin-top: -50px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  min-height: 120px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Örnek olarak grafik veya harita alanı */
+.chart-card p {
+  color: #444;
+  font-size: 14px;
+  margin: 0;
+}
+
+.silhouette-img {
+  display: block;
+  width: 100%;    
+  height: auto;   
+  margin: 0 auto;
+}
+
+/* Light mod (isteğe bağlı, zaten default) */
+.home-container.light-mode {
+  background-color: #F2F2F2;
+  color: #333;
+}
+
+/* ----------------------------- */
+/* ORTAK DARK-MODE STİLLERİ      */
+/* ----------------------------- */
+
+/* Genel: konteynerlere eklendiğinde tüm sayfayı koyu yapar */
+.home-container.dark-mode,
+.settings-container.dark-mode {
+  background-color: #1a1a1a !important;
+  color: #eee !important;
+}
+
+/* Kartlar */
+.home-container.dark-mode .card,
+.settings-container.dark-mode .settings-item {
+  background-color: #333 !important;
+  color: #eee !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5) !important;
+}
+
+/* Başlıklar */
+.home-container.dark-mode .app-title,
+.settings-container.dark-mode .settings-title {
+  color: #fff !important;
+}
+
+/* Home: arama çubuğu & buton */
+.home-container.dark-mode .search-input {
+  background-color: #2a2a2a;
+  color: #eee;
+  border: 1px solid #444;
+}
+.home-container.dark-mode .search-button {
+  background-color: #555;
+  color: #eee;
+}
+.home-container.dark-mode .search-button:hover {
+  background-color: #666;
+}
+
+/* Hata mesajı */
+.home-container.dark-mode .search-error,
+.settings-container.dark-mode .search-error {
+  color: #ff6b6b !important;
+}
+
+/* Settings: tema butonları */
+.settings-container.dark-mode .theme-button {
+  background-color: #555;
+  color: #eee;
+}
+.settings-container.dark-mode .theme-button:hover {
+  background-color: #666;
+}
+
+/* Settings: dil dropdown */
+.settings-container.dark-mode .language-dropdown {
+  background-color: #333;
+  color: #eee;
+  border-color: #555;
+}
+.settings-container.dark-mode .language-dropdown div:hover {
+  background-color: #444;
+}
+
+/* RatingDisclosure bileşeni */
+.rating-disclosure-container.dark-mode .rating-toggle {
+  background-color: #444;
+  color: #fff;
+}
+.rating-disclosure-container.dark-mode .rating-content {
+  background-color: #333;
+  color: #eee;
+}
+
+/* StarRating “teşekkür” mesajı */
+.thank-you-message.dark-mode {
+  color: #eee;
+}
+
+/* Mobilde input ve buton daralsın */
+@media (max-width: 480px) {
+  .search-input {
+      width: 140px;
+      font-size: 13px;
+  }
+  .search-button {
+      padding: 6px 12px;
+      font-size: 13px;
+  }
+}
+.home-container.dark-mode .card p {
+  color: #bbbbbb !important;  /* Kart başlıkları beyaz */
+}
+.home-container.dark-mode .search-button {
+  color: #bbbbbb !important;
+  background-color: #555 !important; /* İstediğiniz bir koyu arka plan rengi */
+}
+/* Light mode hover */
+.home-container.light-mode .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode hover */
+.home-container.dark-mode .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}

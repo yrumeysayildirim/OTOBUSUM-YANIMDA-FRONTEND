@@ -1,0 +1,62 @@
+.bus-distribution-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.distribution-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.chart-wrapper {
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.time-table {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.time-table table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.time-table th,
+.time-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.time-table th {
+  background-color: #f2f2f2;
+}
+
+/* Mobil uyumluluk için media query */
+@media (max-width: 600px) {
+  .distribution-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .chart-wrapper {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .time-table table {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .time-table th,
+  .time-table td {
+    padding: 6px;
+  }
+}

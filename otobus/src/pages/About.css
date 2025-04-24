@@ -1,0 +1,133 @@
+.about-container {
+  background-color: #F2F2F2;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-title {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.list-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.list-item {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.list-item:hover {
+  background-color: #eaeaea;
+}
+
+.rating-container {
+  margin-bottom: 30px;
+}
+
+.footer-area {
+  text-align: center;
+  margin-top: auto;
+}
+
+/* Logo üstte (version yazısının üstüne) */
+.footer-logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+  opacity: 0.5;
+  border: none;       /* Kenar çizgisi yok */
+  outline: none;      /* Focus outline'ı yok */
+}
+
+.version {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.about-container.dark-mode {
+  background-color: #1a1a1a;
+  color: #444;
+}
+
+.about-container.dark-mode .about-title {
+  color: #fff;
+}
+
+.about-container.dark-mode .list-item {
+  background-color: #444;
+  color: #444;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+.about-container.dark-mode .list-item:hover {
+  background-color: #666;
+}
+
+.about-container.dark-mode .footer-area {
+  color: #444;
+}
+
+.about-container.dark-mode .footer-logo {
+  opacity: 0.5;
+}
+
+.about-container.dark-mode .version {
+  color: #444;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 600px) {
+  .about-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .list-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .list-item {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .rating-container {
+    margin-bottom: 20px;
+  }
+
+  .footer-logo {
+    width: 150px;
+    margin-bottom: 8px;
+  }
+
+  .version {
+    font-size: 12px;
+  }
+}

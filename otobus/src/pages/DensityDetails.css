@@ -1,0 +1,217 @@
+.density-details-container {
+  min-height: 100vh;
+  background: url('harita.png') no-repeat center center; 
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+.white-box {
+ background-color: rgb(255, 255, 255);
+
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 90%; 
+  max-width: 1400px; /* daha geniş olacak şekilde arttırdım */
+  overflow-x: auto;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cards-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  
+}
+
+.bus-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px; /* Kartın genişliği sınırlanıyor */
+  box-sizing: border-box;
+  
+}
+
+
+.bus-left-col {
+  flex: 1;
+  text-align: left;
+}
+
+.bus-route {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bus-center-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.bus-right-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.current-val {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+
+
+.white-box {
+  background-color: inherit;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+
+.schedule-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.footer-logo {
+  width: 50%;
+  max-width: 200px;
+}
+/* Dark Mode'da zamanı beyaz yapar */
+.density-details-container.dark-mode .current-val {
+  color: #333 !important;
+}
+
+/* Dark Mode'da kartların stilini değiştirme */
+.density-details-container.dark-mode .bus-card {
+  background-color: #333 !important; /* Koyu renk arka plan */
+  color: #fff !important; /* Yazıyı beyaz yap */
+}
+
+/* Dark Mode'da kart başlıklarını beyaz yapma */
+.density-details-container.dark-mode .bus-route {
+  color: #fff !important;
+}
+
+/* Dark Mode'da değer kısmını beyaz yapmak */
+.density-details-container.dark-mode .current-val {
+  color: #fff !important;
+}
+
+/* Dark Mode'da box-shadow rengini koyulaştırma */
+.density-details-container.dark-mode .bus-card {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important; /* Daha koyu gölge */
+}
+
+/* Kartlar üzerine hover efekti */
+.density-details-container.dark-mode .bus-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important; /* Hoverda daha koyu gölge */
+}
+.density-details-container.light-mode .bus-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Hoverda daha belirgin gölge */
+}
+@media (max-width: 768px) {
+  .white-box {
+    padding: 20px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .bus-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .bus-left-col,
+  .bus-center-col,
+  .bus-right-col {
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .bus-route {
+    font-size: 20px;
+  }
+
+  .current-val {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 20px;
+  }
+
+  .bus-route {
+    font-size: 18px;
+  }
+
+  .current-val {
+    font-size: 1rem;
+  }
+
+  .bus-card {
+    padding: 16px;
+  }
+}

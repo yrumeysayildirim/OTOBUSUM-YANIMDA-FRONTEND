@@ -1,0 +1,100 @@
+.bus-bar-chart-container {
+  padding: 20px;
+  font-family: sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bus-bar-chart-container.light {
+  background-color: #f8f9fc;
+  color: #000;
+}
+
+.bus-bar-chart-container.dark {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+.chart-section,
+.progress-section,
+.busiest-hours {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease;
+}
+
+.bus-bar-chart-container.light .chart-section,
+.bus-bar-chart-container.light .progress-section,
+.bus-bar-chart-container.light .busiest-hours {
+  --card-bg: #ffffff;
+}
+
+.bus-bar-chart-container.dark .chart-section,
+.bus-bar-chart-container.dark .progress-section,
+.bus-bar-chart-container.dark .busiest-hours {
+  --card-bg: #2d2d2d;
+}
+
+.progress-bars {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 16px;
+  flex-wrap: wrap; /* Mobilde sarma özelliği */
+}
+
+.hour-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.bus-bar-chart-container.dark .hour-row {
+  border-bottom: 1px solid #444;
+}
+
+.bus-bar-chart-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.bus-bar-chart-container.light h2 {
+  color: #222;
+}
+
+.bus-bar-chart-container.dark h2 {
+  color: #fff;
+}
+
+/* Mobil cihazlar için media query */
+@media (max-width: 600px) {
+  .bus-bar-chart-container {
+    padding: 12px;
+  }
+
+  .bus-bar-chart-container h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .chart-section,
+  .progress-section,
+  .busiest-hours {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .progress-bars {
+    gap: 16px;
+  }
+
+  .hour-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

@@ -1,0 +1,54 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 56px; /* Örneğin 56px, tasarımına göre değişebilir */
+  background-color: white;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav-item {
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #444;
+}
+
+.nav-item.active {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* --- Light Mode --- */
+.bottom-nav.light-mode {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.bottom-nav.light-mode .nav-item {
+  color: #555;
+}
+
+.bottom-nav.light-mode .nav-item.active {
+  color: #d9534f;
+}
+
+/* --- Dark Mode --- */
+.bottom-nav.dark-mode {
+  background-color: #121212;
+  border-top: 1px solid #333;
+}
+
+.bottom-nav.dark-mode .nav-item {
+  color: #ccc;
+}
+
+.bottom-nav.dark-mode .nav-item.active {
+  color: #ff6b6b; /* isteğe göre daha parlak bir kırmızı seçebilirsiniz */
+}

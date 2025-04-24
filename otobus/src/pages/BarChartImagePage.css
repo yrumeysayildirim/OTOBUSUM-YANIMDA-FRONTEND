@@ -1,0 +1,16 @@
+/* src/pages/BarChartImagePage.css */
+.bar-chart-image-page {
+    padding: 20px;
+    background-color: #F2F2F2;
+    min-height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .bar-chart-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    margin-top: 20px;
+  }

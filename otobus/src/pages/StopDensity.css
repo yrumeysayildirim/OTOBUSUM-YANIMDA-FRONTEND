@@ -1,0 +1,71 @@
+.stop-density-page {
+  padding: 20px;
+  background-color: #F2F2F2;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.density-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.current-stops-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.doughnut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  
+}
+
+.doughnut-chart {
+  width: 100px;    /* eskiden 80px idi, burayı artırabilirsin */
+  height: 100px;   /* eskiden 80px idi, burayı artırabilirsin */
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.percent-text {
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+ 
+}
+
+.total-text,
+.hour-text {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.line-chart-container {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+  
+}
+.stop-density-page.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+.stop-density-page.dark-mode .density-title {
+  color: #fff;  /* Başlık rengini beyaz yapıyoruz */
+}
+.stop-density-page.light-mode {
+  background-color: #fff;
+  color: #383737;
+}
