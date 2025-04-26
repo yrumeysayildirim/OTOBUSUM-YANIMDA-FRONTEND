@@ -7,19 +7,21 @@ function Settings() {
   const { t, i18n } = useTranslation();
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isRefreshOpen, setIsRefreshOpen] = useState(false);
 
-  // Dil açılır menüsünü togglamak
   const toggleLanguageDropdown = () => {
     setIsLangOpen(!isLangOpen);
   };
 
-  // Dil değiştirme fonksiyonu
+  const toggleRefreshDropdown = () => {
+    setIsRefreshOpen(!isRefreshOpen);
+  };
+
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setIsLangOpen(false);
   };
 
-  // Tema değiştirme fonksiyonu
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -46,12 +48,14 @@ function Settings() {
       <div className="settings-item">
         <div className="item-label">{t("theme")}</div>
         <div className="item-action">
-          <button
-            className={`theme-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
-            onClick={toggleTheme}
-          >
-            {i18n.language === 'tr' ? (isDarkMode ? t("Karanlık") : t("Açık")) : (isDarkMode ? t("Dark") : t("Light"))}
-          </button>
+        <button
+  className={`theme-button ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+  onClick={toggleTheme}
+>
+  {i18n.language === 'tr' 
+    ? (isDarkMode ? "Karanlık" : "Açık") 
+    : (isDarkMode ? "Dark" : "Light")}
+</button>
         </div>
       </div>
 
@@ -64,18 +68,15 @@ function Settings() {
       </div>
 
       {/* Veri Yenileme Süresi */}
-      <div className="settings-item">
+      <div className="settings-item" onClick={toggleRefreshDropdown}>
         <div className="item-label">{t("refreshRate")}</div>
         <div className="item-action">
           <span role="img" aria-label="clock" style={{ fontSize: '1.2rem' }}>⏰</span>
-        </div>
-      </div>
-
-      {/* Harita Görünümü */}
-      <div className="settings-item">
-        <div className="item-label">{t("mapView")}</div>
-        <div className="item-action">
-          <span role="img" aria-label="map" style={{ fontSize: '1.2rem' }}>🗺️</span>
+          {isRefreshOpen && (
+            <div className={`refresh-dropdown ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+              <div>5 {t("minutes")}</div>
+            </div>
+          )}
         </div>
       </div>
     </div>

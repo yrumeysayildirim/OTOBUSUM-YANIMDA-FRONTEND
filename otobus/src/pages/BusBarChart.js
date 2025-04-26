@@ -36,11 +36,11 @@ function BusBarChart() {
   ];
 
   const busiestHours = [
-    { day: t('busBarChart.Monday'),    hour: '08.00 - 10.00' },
-    { day: t('busBarChart.Tuesday'),   hour: '08.00 - 10.00' },
-    { day: t('busBarChart.Wednesday'), hour: '08.00 - 10.00' },
-    { day: t('busBarChart.Thursday'),  hour: '08.00 - 10.00' },
-    { day: t('busBarChart.Friday'),    hour: '08.00 - 10.00' },
+    { day: t('busBarChart.Monday'),    hour: '12.00 - 16.00' },
+    { day: t('busBarChart.Tuesday'),   hour: '12.00 - 16.00' },
+    { day: t('busBarChart.Wednesday'), hour: '12.00 - 16.00' },
+    { day: t('busBarChart.Thursday'),  hour: '12.00 - 16.00' },
+    { day: t('busBarChart.Friday'),    hour: '12.00 - 16.00' },
     { day: t('busBarChart.Saturday'),  hour: '13.00 - 20.00' },
     { day: t('busBarChart.Sunday'),    hour: '15.00 - 22.00' },
   ];

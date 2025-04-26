@@ -1,5 +1,8 @@
 .about-container {
-  background-color: #F2F2F2;
+  background-color: rgba(242, 242, 242, 0.8); /* Saydamlaştırılmış arka plan rengi */
+  background-image: url('Otobusum.png'); /* Arka plan resmi buraya eklenir */
+  background-position: center bottom; /* Resmin alt kısmı ortalanır */
+  background-size: cover; /* Resmin boyutu ekranı kaplayacak şekilde ayarlanır */
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   padding: 20px;
@@ -7,17 +10,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
+/* Üst kısımdaki başlık */
 .about-title {
   margin: 0;
   margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   text-align: center;
 }
 
+/* Liste ve öğeler */
 .list-container {
   width: 100%;
   max-width: 500px;
@@ -58,23 +64,27 @@
   height: auto;
   display: block;
   margin: 0 auto 10px;
-  opacity: 0.5;
-  border: none;       /* Kenar çizgisi yok */
-  outline: none;      /* Focus outline'ı yok */
+  z-index: 1; /* Logo diğer içeriklerin üstünde olacak */
+  position: relative; /* Logo görünür olsun */
 }
-
+.footer-area p {
+  color: #f4f0f0;  /* Aynı renk kodu kullanıldı */
+}
 .version {
   margin: 0;
   font-size: 14px;
-  color: #666;
+  color: #f4f0f0;
   margin-bottom: 5px;
 }
 
+/* Dark mode */
 .about-container.dark-mode {
-  background-color: #1a1a1a;
+  background-color: rgba(26, 26, 26, 0.8); /* Saydamlaştırılmış koyu mod arka planı */
   color: #444;
 }
-
+.about-container.dark-mode .footer-area p {
+  color: #666565;  /* Koyu modda da aynı renk uygulandı */
+}
 .about-container.dark-mode .about-title {
   color: #fff;
 }

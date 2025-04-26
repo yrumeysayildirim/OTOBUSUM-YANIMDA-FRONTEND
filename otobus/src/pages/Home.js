@@ -32,7 +32,6 @@ function Home() {
     <div className={`home-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <header className="header-section">
         <div className="silhouette-bg"></div>
-        
       </header>
 
       {error && <div className="search-error">{error}</div>}
@@ -62,10 +61,12 @@ function Home() {
           <p>{t('weeklyDensity')}</p>
         </div>
         <div className="card chart-card" onClick={() => navigate('./real-time-bus')}>
-          <p>{t('realTimeTracking.title')}</p> {/* Doğru key ile başlık düzeltildi */}
+          <p>{t('realTimeTracking.title')}</p>
         </div>
       </div>
-    </div>
+      <div className="silhouette-bottom-bg"></div>
+      </div>
+   
   );
 }
 

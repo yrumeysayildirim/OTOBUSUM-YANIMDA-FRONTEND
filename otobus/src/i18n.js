@@ -7,8 +7,8 @@ const resources = {
       appName: "OTOBÜSÜM YANIMDA",
       homeTitle: "Anasayfa",
       welcomeMessage: "Otobüsüm Yanımda uygulamasına hoşgeldiniz. Gerçek zamanlı verilerle şehir içi otobüs yoğunluğunu takip edebilirsiniz.",
-      appDescription: "Hat ara",  // Türkçe placeholder
-      search: "Ara",  // Türkçe search butonu
+      appDescription: "Hat ara",
+      search: "Ara",
 
       settings: "Ayarlar",
       language: "Dil",
@@ -18,6 +18,8 @@ const resources = {
       notifications: "Bildirimler",
       refreshRate: "Veri Yenileme Süresi",
       mapView: "Harita Görünümü",
+      refreshOption: "5 Dakika",
+      minutes: "Dakika", 
 
       pieChart: "Otobüs Dağılımı",
       stopDensity: "Güncel Durak Yoğunluğu",
@@ -96,7 +98,10 @@ const resources = {
       realTimeTracking: {
         title: "Anlık Otobüs Takibi",
         routeName: "Hat Adı"
-      }
+      },
+
+      // Yeni eklendi: 
+      thankYouMessage: "Geri bildirim için teşekkür ederiz!"
     }
   },
   en: {
@@ -104,8 +109,8 @@ const resources = {
       appName: "OTOBUSUM YANIMDA",
       homeTitle: "Home",
       welcomeMessage: "Welcome to the Otobüsüm Yanımda application. Track real-time bus density in your city.",
-      appDescription: "Search line",  // İngilizce placeholder
-      search: "Search",  // İngilizce search butonu
+      appDescription: "Search line",
+      search: "Search",
 
       settings: "Settings",
       language: "Language",
@@ -115,6 +120,8 @@ const resources = {
       notifications: "Notifications",
       refreshRate: "Refresh Rate",
       mapView: "Map View",
+      refreshOption: "5 Minutes",
+      minutes: "Minutes", 
 
       pieChart: "Bus Distribution",
       stopDensity: "Current Stop Density",
@@ -193,7 +200,10 @@ const resources = {
       realTimeTracking: {
         title: "Real-Time Bus Tracking",
         routeName: "Route Name"
-      }
+      },
+
+      // Yeni eklendi: 
+      thankYouMessage: "Thank you for your feedback!"
     }
   }
 };
@@ -202,8 +212,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'tr',
-    fallbackLng: 'tr',
+    lng: 'tr',  // Başlangıç dili olarak Türkçe ayarladık
+    fallbackLng: 'tr',  // Eğer belirtilen dilde bir çeviri yoksa, Türkçe kullanılır
     interpolation: {
       escapeValue: false
     }

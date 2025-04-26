@@ -8,25 +8,21 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  
 }
 
 .white-box {
- background-color: rgb(255, 255, 255);
-
+  background-color: rgb(255, 255, 255);
   border-radius: 12px;
   padding: 40px;
   margin-top: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   width: 90%; 
-  max-width: 1400px; /* daha geniş olacak şekilde arttırdım */
+  max-width: 1400px;
   overflow-x: auto;
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
 }
-
-
 
 .page-title {
   text-align: center;
@@ -49,7 +45,6 @@
   justify-content: center;
   width: 100%;
   gap: 20px;
-  
 }
 
 .bus-card {
@@ -61,40 +56,42 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 600px; /* Kartın genişliği sınırlanıyor */
+  max-width: 600px; 
   box-sizing: border-box;
-  
+  flex-wrap: nowrap; /* Flex elemanlarının alt alta geçmesini engelle */
 }
 
-
-.bus-left-col {
+.bus-left-col,
+.bus-center-col,
+.bus-right-col {
   flex: 1;
   text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bus-right-col {
+  justify-content: flex-end;
 }
 
 .bus-route {
   font-size: 24px;
   font-weight: bold;
   color: #333;
-}
-
-.bus-center-col {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
-  justify-content: center;
-}
-
-.bus-right-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .current-val {
   font-size: 1.4rem;
   font-weight: bold;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .dark-mode {
@@ -102,14 +99,11 @@
   color: white;
 }
 
-
-
 .white-box {
   background-color: inherit;
   padding: 1rem;
   border-radius: 12px;
 }
-
 
 .schedule-table {
   width: 100%;
@@ -117,7 +111,6 @@
   border-collapse: collapse;
   text-align: center;
 }
-
 
 .table-wrapper {
   width: 100%;
@@ -128,6 +121,7 @@
   width: 50%;
   max-width: 200px;
 }
+
 /* Dark Mode'da zamanı beyaz yapar */
 .density-details-container.dark-mode .current-val {
   color: #333 !important;
@@ -135,8 +129,8 @@
 
 /* Dark Mode'da kartların stilini değiştirme */
 .density-details-container.dark-mode .bus-card {
-  background-color: #333 !important; /* Koyu renk arka plan */
-  color: #fff !important; /* Yazıyı beyaz yap */
+  background-color: #333 !important;
+  color: #fff !important;
 }
 
 /* Dark Mode'da kart başlıklarını beyaz yapma */
@@ -151,18 +145,20 @@
 
 /* Dark Mode'da box-shadow rengini koyulaştırma */
 .density-details-container.dark-mode .bus-card {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important; /* Daha koyu gölge */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Kartlar üzerine hover efekti */
 .density-details-container.dark-mode .bus-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important; /* Hoverda daha koyu gölge */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
 }
+
 .density-details-container.light-mode .bus-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Hoverda daha belirgin gölge */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 @media (max-width: 768px) {
   .white-box {
     padding: 20px;
@@ -174,19 +170,16 @@
   }
 
   .bus-card {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
     padding: 20px;
-    gap: 10px;
+    gap: 20px; /* Öğeler arasındaki boşluğu arttır */
   }
 
   .bus-left-col,
   .bus-center-col,
   .bus-right-col {
-    width: 100%;
-    text-align: left;
+    width: auto;
     justify-content: flex-start;
-    align-items: flex-start;
   }
 
   .bus-route {
@@ -213,5 +206,22 @@
 
   .bus-card {
     padding: 16px;
+  }
+
+  /* Mobilde kart öğelerinin alt alta geçmesini engelle */
+  .bus-card {
+    flex-direction: column; /* Kartın öğelerini dikey sıralar */
+    align-items: center; /* Öğeleri yatayda ortalar */
+  }
+
+  .bus-left-col, .bus-center-col, .bus-right-col {
+    width: 100%; /* Her öğe tam genişlikte */
+    text-align: center; /* Her öğeyi ortalar */
+  }
+
+  .bus-route, .current-val {
+    width: 100%; /* Her iki öğeyi 100% genişlikte tutarak, alt alta yerleştirilmesini engelleriz */
+    text-align: center; /* Her iki öğeyi yatayda ortalar */
+    margin-bottom: 10px;
   }
 }

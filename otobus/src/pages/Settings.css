@@ -192,3 +192,37 @@ html, body {
     max-width: 90%;
   }
 }
+.refresh-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 120px;
+  z-index: 10;
+  margin-top: 8px;
+}
+
+.refresh-dropdown.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.refresh-dropdown.light-mode {
+  background-color: #fff;
+  color: #333;
+}
+
+.refresh-dropdown div {
+  padding: 8px;
+  text-align: center;
+}
+
+.refresh-dropdown div:hover {
+  background-color: #f2f2f2;
+}
+
+.refresh-dropdown.dark-mode div:hover {
+  background-color: #444;
+}
