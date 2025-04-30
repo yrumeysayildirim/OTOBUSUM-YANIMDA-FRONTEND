@@ -1,21 +1,134 @@
-import React, { useContext } from 'react';
+import React, { useContext , useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DensityDetails.css';
-import { ThemeContext } from './ThemeContext'; // Tema context'i
+import { ThemeContext } from './ThemeContext';
+
+const now = new Date();
+const currentHours = now.getHours();
+const currentMinutes = now.getMinutes();
+const currentTotalMins = currentHours * 60 + currentMinutes;
+
+const bus_474_weekdays = ['06:15', '06:30', '06:40', '06:50', '07:00', '07:10', '07:20',
+  '07:30', '07:40', '07:50', '08:00', '08:15', '08:30', '08:50',
+  '09:10', '09:32', '09:54', '10:16', '10:38', '11:00', '11:22',
+  '11:44', '12:06', '12:28', '12:50', '13:10', '13:30', '13:50',
+  '14:05', '14:20', '14:32', '14:44', '14:55', '15:05', '15:15',
+  '15:25', '15:35', '15:45', '15:56', '16:08', '16:20', '16:35',
+  '16:50', '17:00', '17:15', '17:30', '17:42', '17:54', '18:06',
+  '18:18', '18:30', '18:45', '19:00', '19:20', '19:40', '20:00',
+  '20:20', '20:45', '21:10', '21:30', '21:55', '22:30'];
+
+const bus_472_weekdays = ['06:20', '06:40', '07:20', '07:45', '08:15', '08:35', '09:30',
+'10:15', '11:00', '12:00', '13:00', '13:45', '14:30', '15:15',
+'16:00', '16:45', '17:30', '18:10', '18:50', '19:30', '20:10',
+'20:40', '21:00', '21:15', '22:00'];
+
+const bus_486_weekdays = ['06:15', '06:26', '06:38', '06:50', '07:02', '07:15', '07:30',
+'07:45', '08:00', '08:20', '08:40', '09:00', '09:22', '09:44',
+'10:06', '10:28', '10:50', '11:12', '11:34', '11:56', '12:18',
+'12:40', '13:00', '13:20', '13:40', '14:00', '14:15', '14:30',
+'14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:10',
+'16:20', '16:30', '16:40', '16:50', '17:00', '17:10', '17:20',
+'17:30', '17:40', '17:50', '18:00', '18:18', '18:36', '18:54',
+'19:12', '19:30', '19:50', '20:05', '20:20', '20:35', '20:50',
+'21:05', '21:20', '21:35', '21:50', '22:05', '22:20', '22:40',
+'23:00'];
+
+const bus_477_weekdays = ['06:55', '07:55', '10:00', '12:00', '14:05', '16:05', '18:05'];
+
+
+function convert_string_time_to_num(time){
+  const [hours, mins] = time.split(':').map(Number);
+  return hours * 60 + mins;
+}
+
+function convert_num_to_string_time(totalMins) {
+  const hours = Math.floor(totalMins / 60);
+  const mins = totalMins % 60;
+  return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+}
+
+// ...imports and constants same as before...
+
+async function getAdjustedTime(timeStr) {
+  try {
+    const response = await fetch("http://localhost:8000/density-classification-prediction", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ timeStr, day : "Wednesday"})
+    });
+
+    if (!response.ok) return { updatedTime: timeStr, prediction: "MEDIUM" };
+
+    const result = await response.json();
+    const prediction = result.prediction.trim().toUpperCase(); // clean & normalize the string
+
+    let time = convert_string_time_to_num(timeStr);
+    if (prediction === "HIGH") time -= 5;
+    else if (prediction === "LOW") time += 5;
+
+
+    return { updatedTime: convert_num_to_string_time(time), prediction };
+  } catch (err) {
+    console.error("Prediction fetch error", err);
+    return { updatedTime: timeStr, prediction: "MEDIUM" };
+  }
+}
+
+async function getNextBusTime(busArray) {
+  for (let timeStr of busArray) {
+    const timeNum = convert_string_time_to_num(timeStr);
+    if (timeNum >= currentTotalMins) {
+      return await getAdjustedTime(timeStr);
+    }
+  }
+  return { updatedTime: null, prediction: "MEDIUM" };
+}
 
 function DensityDetails() {
   const navigate = useNavigate();
-  const { isDarkMode } = useContext(ThemeContext); // Tema bilgisini al
+  const { isDarkMode } = useContext(ThemeContext);
 
-  // Örnek veriler
+  const [busInfo, setBusInfo] = useState({
+    '474': { time: null, prediction: "MEDIUM" },
+    '472': { time: null, prediction: "MEDIUM" },
+    '486': { time: null, prediction: "MEDIUM" },
+    '477': { time: null, prediction: "MEDIUM" },
+  });
+
+  useEffect(() => {
+    async function fetchAll() {
+      const [info474, info472, info486, info477] = await Promise.all([
+        getNextBusTime(bus_474_weekdays),
+        getNextBusTime(bus_472_weekdays),
+        getNextBusTime(bus_486_weekdays),
+        getNextBusTime(bus_477_weekdays),
+      ]);
+
+      setBusInfo({
+        '474': { time: info474.updatedTime, prediction: info474.prediction },
+        '472': { time: info472.updatedTime, prediction: info472.prediction },
+        '486': { time: info486.updatedTime, prediction: info486.prediction },
+        '477': { time: info477.updatedTime, prediction: info477.prediction },
+      });
+    }
+
+    fetchAll();
+  }, []);
+
+  const getColor = (prediction) => {
+    if (prediction === "LOW") return "red";
+    if (prediction === "HIGH") return "green";
+    return isDarkMode ? "white" : "black";
+  };
+
   const busRoutes = [
-    { route: '474', currentTime: '12:30', color: 'red' },
-    { route: '477', currentTime: '12:35', color: 'red' },
-    { route: '472', currentTime: '12:38', color: 'green' },
-    { route: '486', currentTime: '12:32', color: 'green' },
+    { route: '474', currentTime: busInfo['474'].time || '—', color: getColor(busInfo['474'].prediction) },
+    { route: '477', currentTime: busInfo['477'].time || '—', color: getColor(busInfo['477'].prediction) },
+    { route: '472', currentTime: busInfo['472'].time || '—', color: getColor(busInfo['472'].prediction) },
+    { route: '486', currentTime: busInfo['486'].time || '—', color: getColor(busInfo['486'].prediction) },
   ];
 
-  // Yönlendirme
   const handleBusClick = (busId) => {
     navigate(`/bus-schedule/${busId}`);
   };
@@ -23,10 +136,6 @@ function DensityDetails() {
   return (
     <div className={`density-details-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <div className="white-box">
-        <div className="table-wrapper">
-         
-        </div>
-
         <div className="cards-grid">
           {busRoutes.map((bus, idx) => (
             <div 
@@ -38,15 +147,11 @@ function DensityDetails() {
               <div className="bus-left-col">
                 <span className="bus-route">{bus.route}</span>
               </div>
-
-              <div className="bus-center-col">
-                {/* Grafik kaldırıldı */}
-              </div>
-
+              <div className="bus-center-col"></div>
               <div className="bus-right-col">
                 <span 
                   className="current-val" 
-                  style={{ color: !isDarkMode ? bus.color : undefined }}
+                  style={{ color: bus.color }}
                 >
                   {bus.currentTime}
                 </span>

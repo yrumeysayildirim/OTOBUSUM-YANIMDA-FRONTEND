@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -26,13 +26,122 @@ ChartJS.register(
   LineElement
 );
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function fetchMaxStopDensity(time, day) {
+  try {
+    const response = await fetch("http://localhost:8000/stop-density-pie", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ time, day }),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      return result.maximum;
+    } else {
+      console.error("Error fetching max stop density");
+      return null;
+    }
+  } catch (err) {
+    console.error("Network error:", err);
+    return null;
+  }
+}
+
+// Example usage:
+
+
+async function assignMaximum() {
+  const maximum = await fetchMaxStopDensity("08:30", "Wednesday");
+  console.log(maximum); // Now maximum holds the resolved value
+  // You can use 'maximum' here or return it
+  return maximum;
+}
+
+const maximum = assignMaximum()
+
+async function getStudentCounts(timesArray, day) {
+  const results = [];
+
+  for (let time of timesArray) {
+    try {
+      const response = await fetch("http://localhost:8000/sd-pie", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ time, day }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        results.push(data["student count"]);
+      } else {
+        results.push(null);
+      }
+    } catch (error) {
+      console.error("Error fetching time:", time, error);
+      results.push(null);
+    }
+  }
+
+  return results;
+}
+
+function calculatePercentage(part, total) {
+  if (total === 0) {
+    return 0; // Avoid division by zero
+  }
+  return Math.round((part / total) * 100);
+}
+
+
+
+const ttt = ["12:00", "13:00", "14:00", "15:00"] 
+let small_times = [];
+let ss_times = []
+
+async function populate_small_times() {
+  const ttt = ["12:00", "13:00", "14:00", "15:00"];
+  small_times = await getStudentCounts(ttt, "Wednesday");
+  // Now `small_times` is populated
+  console.log(small_times); // Optional: for verification
+  console.log(maximum)
+  console.log(small_times[0].then)
+  const percentage_12 = calculatePercentage(small_times[0], maximum);
+  ss_times.push(percentage_12)
+  console.log(percentage_12)
+  const percentage_1 = calculatePercentage(small_times[1], maximum);
+  ss_times.push(percentage_1)
+  const percentage_2 = calculatePercentage(small_times[2], maximum);
+  ss_times.push(percentage_2)
+  const percentage_3 = calculatePercentage(small_times[3], maximum);
+  ss_times.push(percentage_3)
+
+}
+
+populate_small_times()
+
+sleep(7000)
+const t_1 = calculatePercentage(501, 797)
+const t_2 = calculatePercentage(450, 797)
+const t_3 = calculatePercentage(90, 797)
+const t_4 = calculatePercentage(595, 797)
+
+
+
+
 // Örnek veriler
 const doughnutDataArray = [
-  { percent: 53, total: 41415, hour: '9.00' },
-  { percent: 34, total: 41415, hour: '9.30' },
-  { percent: 22, total: 41415, hour: '10.00' },
-  { percent: 2, total: 41415, hour: '10.30' },
+  { percent: t_1, total: 41415, hour: '12:00' },
+  { percent: t_2, total: 41415, hour: '13:00' },
+  { percent: t_3, total: 41415, hour: '14:00' },
+  { percent: t_4, total: 41415, hour: '15:00' },
 ];
+
+
 
 // t fonksiyonu parametre olarak alınacak şekilde düzenlendi
 const generateDoughnutData = (percent, t) => ({
@@ -45,6 +154,8 @@ const generateDoughnutData = (percent, t) => ({
     },
   ],
 });
+
+const values = [143, 108, 82, 121, 95]
 
 // Gün isimlerini çeviren fonksiyon
 const generateLineChartData = (t) => ({
@@ -60,8 +171,8 @@ const generateLineChartData = (t) => ({
   datasets: [
     {
       label: '41415',
-      data: [30, 40, 50, 30, 20, 35, 25],
-      fill: true,
+      data: [50, values[0], values[1], values[2], values[3], values[4], 35], // for sunday and saturday keep it low (50, 35)because 
+      fill: true,                         // there are no classes and the models cant predict for these days
       backgroundColor: 'rgba(214, 51, 132, 0.2)',
       borderColor: '#D63384',
       tension: 0.4,
@@ -89,6 +200,7 @@ const lineChartOptions = {
 function StopDensityPage() {
   const { t } = useTranslation();
   const { isDarkMode } = useContext(ThemeContext); // Tema bilgisini alın
+  
 
   return (
     <div className={`stop-density-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
