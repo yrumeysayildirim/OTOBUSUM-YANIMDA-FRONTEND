@@ -27,7 +27,7 @@ function About() {
 
       <footer className="footer-area">
         <img src="/logo19.jpeg" alt="Logo" className="footer-logo" />
-        <p className="version">{t("version")}: 1.0.0</p>
+        <p className="version">{t("version")}: 1.0.4</p>
         <p>© 2024 OtobüsümYanımda</p>
       </footer>
     </div>
