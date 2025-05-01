@@ -59,13 +59,25 @@ function BusDistributionPage() {
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false // ← Chart.js legend'ı kapatıyoruz
+      }
+    }
   };
 
   return (
     <div className={`bus-distribution-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       <h2 className="distribution-title">{t('busDistribution.busDistribution')}</h2>
-      <div className="chart-container">
+      <div className="custom-legend">
+  <div><span className="legend-box" style={{ backgroundColor: '#ff9800' }}></span> {t('busDistribution.underMaintenance')}</div>
+  <div><span className="legend-box" style={{ backgroundColor: '#f44336' }}></span> {t('busDistribution.notGoingOnTrip')}</div>
+  <div><span className="legend-box" style={{ backgroundColor: '#2196f3' }}></span> {t('busDistribution.waitingBuses')}</div>
+  <div><span className="legend-box" style={{ backgroundColor: '#4caf50' }}></span> {t('busDistribution.departedBuses')}</div>
+</div>
+
+<div className="chart-container">
         <Pie data={chartData} options={chartOptions} />
       </div>
       <div className="table-container">

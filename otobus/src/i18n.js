@@ -101,7 +101,8 @@ const resources = {
       },
 
       // Yeni eklendi: 
-      thankYouMessage: "Geri bildirim için teşekkür ederiz!"
+      thankYouMessage: "Geri bildirim için teşekkür ederiz!",
+      averagePersonCount: "Ortalama Kişi Sayısı"
     }
   },
   en: {
@@ -203,7 +204,8 @@ const resources = {
       },
 
       // Yeni eklendi: 
-      thankYouMessage: "Thank you for your feedback!"
+      thankYouMessage: "Thank you for your feedback!",
+      averagePersonCount: "Average Person Count"
     }
   }
 };
@@ -212,8 +214,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'tr',  // Başlangıç dili olarak Türkçe ayarladık
-    fallbackLng: 'tr',  // Eğer belirtilen dilde bir çeviri yoksa, Türkçe kullanılır
+    lng: 'tr',
+    fallbackLng: 'tr',
     interpolation: {
       escapeValue: false
     }

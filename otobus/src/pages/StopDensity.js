@@ -188,14 +188,32 @@ const generateLineChartData = (t) => ({
   ],
 });
 
-const lineChartOptions = {
+const getLineChartOptions = (t) => ({
   responsive: true,
   plugins: {
     legend: {
       position: 'top',
     },
+    tooltip: {
+      displayColors: true,
+      callbacks: {
+        title: (tooltipItems) => tooltipItems[0].label,
+        label: (tooltipItem) => {
+          const datasetIndex = tooltipItem.datasetIndex;
+          const index = tooltipItem.dataIndex;
+          const dataset = tooltipItem.chart.data.datasets[datasetIndex];
+          const value = dataset.data[index];
+          const label = dataset.label;
+
+          return [
+            `${label}`,
+            `${t('averagePersonCount')}: ${value}`,
+          ];
+        },
+      },
+    },
   },
-};
+});
 
 function StopDensityPage() {
   const { t } = useTranslation();
@@ -220,7 +238,7 @@ function StopDensityPage() {
       </div>
 
       <div className="line-chart-container">
-        <Line data={generateLineChartData(t)} options={lineChartOptions} />
+      <Line data={generateLineChartData(t)} options={getLineChartOptions(t)} />
       </div>
     </div>
   );
