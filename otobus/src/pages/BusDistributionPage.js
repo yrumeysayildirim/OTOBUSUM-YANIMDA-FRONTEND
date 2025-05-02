@@ -37,6 +37,24 @@ const bus_486_weekdays = ['06:15', '06:26', '06:38', '06:50', '07:02', '07:15', 
 const bus_477_weekdays = ['06:55', '07:55', '10:00', '12:00', '14:05', '16:05', '18:05'];
 
 
+/*
+
+what i want to do:
+
+i want rolling hours for the table, last hour, this hour, next hour
+and i want to count how many busses are at that time frame, then i 
+want to get the predictions for those times and if they dont match with
+the original times (one is later), i need to set the 3rd column as late
+
+alternative:
+
+it is for the busiest times right now, so leave it like that, and just get
+the predictions for these times.
+
+
+*/
+
+
 function BusDistributionPage() {
   const { t } = useTranslation();
   const { isDarkMode } = useContext(ThemeContext); // Tema bilgisini alın

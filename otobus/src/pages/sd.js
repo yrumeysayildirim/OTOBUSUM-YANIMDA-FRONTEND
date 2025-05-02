@@ -226,128 +226,30 @@ const getLineChartOptions = (t) => ({
 function StopDensityPage() {
   const { t } = useTranslation();
   const { isDarkMode } = useContext(ThemeContext); // Tema bilgisini alın
+  
 
-  const [doughnutItems, setDoughnutItems] = useState([]); // Start with empty data
-    // State to track loading status
-    const [isLoading, setIsLoading] = useState(true); // Start in loading state
-    // State to hold potential errors
-    const [error, setError] = useState(null);
-    // ... other component logic
+  return (
+    <div className={`stop-density-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+      <h2 className="density-title">{t('stopDensity.title')}</h2>
 
-    const doughnutTimes = ["12:00", "13:00", "14:00", "15:00"];
-    const doughnutDay = "Wednesday";
-    const maxDensityTime = "08:30";
-
-    useEffect(() => {
-      const fetchData = async () => {
-        setIsLoading(true); // Start loading
-        setError(null);     // Reset error
-  
-        try {
-          const maximum = await fetchMaxStopDensity(maxDensityTime, doughnutDay);
-          if (maximum === null) {
-            // Use translation for error messages if available
-            throw new Error(t('errors.fetchMaxDensityFailed') || "Failed to fetch maximum density reference.");
-          }
-  
-          const studentCounts = await getStudentCounts(doughnutTimes, doughnutDay);
-  
-          const items = doughnutTimes.map((time, index) => {
-            const count = studentCounts[index];
-            const percentage = calculatePercentage(count, maximum);
-            // Ensure the structure matches what the rendering expects
-            return {
-              percent: percentage,
-              total: maximum, // Use the fetched maximum as the 'total' reference
-              hour: time
-            };
-          });
-  
-          setDoughnutItems(items); // Update state with fetched data
-  
-        } catch (err) {
-          console.error("Fetching doughnut data failed:", err);
-          // Use translation for error messages if available
-          setError(err.message || (t('errors.generalFetchError') || "Failed to load stop density data."));
-        } finally {
-          setIsLoading(false); // Stop loading regardless of outcome
-        }
-      };
-  
-      fetchData();
-  
-      // Add 't' to dependency array if error messages use it and language can change
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [t]); // Re-run if translation function changes
-  
-    // --- Conditional Rendering Logic ---
-  
-    // 1. Show loading indicator if isLoading is true
-    if (isLoading) {
-      console.log("Rendering: Loading State");
-      return (
-        <div className={`stop-density-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-          <p>{t('loading', 'Loading stop density data...')}</p>
-        </div>
-      );
-    }
-  
-    // 2. Handle Error State
-    if (error) {
-      console.log("Rendering: Error State -", error);
-      return (
-        <div className={`stop-density-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-          <p className="error-message">{t('errorPrefix', 'Error')}: {error}</p>
-        </div>
-      );
-    }
-  
-    // 3. Render Content (Only if not loading and no error)
-    console.log("Rendering: Content State - Items:", doughnutItems);
-    return (
-      <div className={`stop-density-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-        <h2 className="density-title">{t('stopDensity.title', 'Current Stop Density')}</h2>
-  
-        <div className="current-stops-container">
-          {Array.isArray(doughnutItems) && doughnutItems.length > 0 ? (
-            doughnutItems.map((item, index) => (
-              item ? (
-                <div key={item.hour || index} className="doughnut-item">
-                  <div className="doughnut-chart">
-                    {(typeof item.percent === 'number' && !isNaN(item.percent)) ? (
-                       <Doughnut data={generateDoughnutData(item.percent, t)} />
-                     ) : (
-                       <p>{/* Placeholder for invalid chart data */}</p>
-                     )}
-                  </div>
-  
-                  {/* Using original class names, content matches Image 1 */}
-                  <p className="percent-text">
-                      % {typeof item.percent === 'number' && !isNaN(item.percent) ? item.percent : '--'}
-                  </p>
-                  <p className="total-text">
-                      {/* --- CHANGE: Hardcoding 41415 as requested --- */}
-                      41415
-                  </p>
-                  <p className="hour-text">
-                      {item.hour || '--:--'}
-                  </p>
-                </div>
-              ) : null
-            ))
-          ) : (
-            <p>{t('stopDensity.noData', "No density data available for the selected times.")}</p>
-          )}
-        </div>
-  
-        {/* Line Chart Section */}
-        <div className="line-chart-container">
-          {/* --- REMOVED: The H3 heading --- */}
-          {/* <h3>{t('stopDensity.dailyTrendTitle', 'Daily Average Trend')}</h3> */}
-          <Line data={generateLineChartData(t)} options={getLineChartOptions(t)} />
-        </div>
+      <div className="current-stops-container">
+        {doughnutDataArray.map((item, index) => (
+          <div key={index} className="doughnut-item">
+            <div className="doughnut-chart">
+              <Doughnut data={generateDoughnutData(item.percent, t)} />
+            </div>
+            <p className="percent-text">{t('stopDensity.percent')} {item.percent}</p>
+            <p className="total-text">{item.total}</p>
+            <p className="hour-text">{item.hour}</p>
+          </div>
+        ))}
       </div>
-    );
+
+      <div className="line-chart-container">
+      <Line data={generateLineChartData(t)} options={getLineChartOptions(t)} />
+      </div>
+    </div>
+  );
 }
 
 export default StopDensityPage;
