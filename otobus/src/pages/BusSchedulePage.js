@@ -50,7 +50,7 @@ function BusSchedulePage() {
         console.log("Starting parallel fetch for 474...");
         // 1. Create an array of promises, one for each time
         const promises = bus_474_weekdays.map(time =>
-            fetch("http://localhost:8000/474-classification-prediction", {
+            fetch("https://otobusumyanimda-backend.onrender.com/474-classification-prediction", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ time: time, day: "Wednesday" }) // Assuming Wednesday
@@ -113,7 +113,7 @@ function BusSchedulePage() {
       console.log("Starting parallel fetch for 477...");
       const promises = bus_477_weekdays.map(time =>
           // *** FIX: Add method and headers explicitly ***
-          fetch("http://localhost:8000/477-classification-prediction", {
+          fetch("https://otobusumyanimda-backend.onrender.com/477-classification-prediction", {
                method: "POST", // <-- Ensure this is present
                headers: { "Content-Type": "application/json" }, // <-- Ensure this is present
                body: JSON.stringify({ time: time, day: "Wednesday" })
@@ -152,7 +152,7 @@ function BusSchedulePage() {
       console.log("Starting parallel fetch for 472...");
       const promises = bus_472_weekdays.map(time =>
            // *** FIX: Add method and headers explicitly ***
-           fetch("http://localhost:8000/472-classification-prediction", {
+           fetch("https://otobusumyanimda-backend.onrender.com/472-classification-prediction", {
                method: "POST", // <-- Ensure this is present
                headers: { "Content-Type": "application/json" }, // <-- Ensure this is present
                body: JSON.stringify({ time: time, day: "Wednesday" })
@@ -191,7 +191,7 @@ function BusSchedulePage() {
       console.log("Starting parallel fetch for 486...");
       const promises = bus_486_weekdays.map(time =>
           // *** FIX: Add method and headers explicitly ***
-          fetch("http://localhost:8000/486-classification-prediction", {
+          fetch("https://otobusumyanimda-backend.onrender.com/486-classification-prediction", {
                method: "POST", // <-- Ensure this is present
                headers: { "Content-Type": "application/json" }, // <-- Ensure this is present
                body: JSON.stringify({ time: time, day: "Wednesday" })

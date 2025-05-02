@@ -33,7 +33,7 @@ function sleep(ms) {
 
 async function fetchMaxStopDensity(time, day) {
   try {
-    const response = await fetch("http://localhost:8000/stop-density-pie", {
+    const response = await fetch("https://otobusumyanimda-backend.onrender.com/stop-density-pie", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ time, day }),
@@ -69,7 +69,7 @@ async function getStudentCounts(timesArray, day) {
 
   for (let time of timesArray) {
     try {
-      const response = await fetch("http://localhost:8000/sd-pie", {
+      const response = await fetch("https://otobusumyanimda-backend.onrender.com/sd-pie", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ time, day }),

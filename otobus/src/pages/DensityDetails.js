@@ -52,7 +52,7 @@ function convert_num_to_string_time(totalMins) {
 
 async function getAdjustedTime(timeStr) {
   try {
-    const response = await fetch("http://localhost:8000/density-classification-prediction", {
+    const response = await fetch("https://otobusumyanimda-backend.onrender.com/density-classification-prediction", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ timeStr, day : "Wednesday"})
