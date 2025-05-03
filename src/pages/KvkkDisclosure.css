@@ -1,0 +1,50 @@
+/* src/pages/KvkkDisclosure.css */
+.kvkk-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+}
+
+.kvkk-toggle {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.kvkk-toggle:hover {
+  background-color: #eaeaea;
+}
+
+.kvkk-text {
+  background-color: #fff;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* 🌙 Dark Mode */
+.kvkk-container.dark-mode .kvkk-toggle {
+  background-color: #444;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+.kvkk-container.dark-mode .kvkk-toggle:hover {
+  background-color: #555;
+}
+
+.kvkk-container.dark-mode .kvkk-text {
+  background-color: #333;
+  color: #eee;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+}

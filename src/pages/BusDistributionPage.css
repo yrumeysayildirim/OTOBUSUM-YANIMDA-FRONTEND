@@ -1,0 +1,179 @@
+/* src/pages/BusDistributionPage.css */
+.bus-distribution-page {
+  padding: 20px;
+  background-color: #F2F2F2;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.distribution-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* src/pages/BusDistributionPage.css */
+
+/* ...diğer kurallarınız... */
+
+.chart-container {
+  /* Grafiğin bulunduğu kapsayıcıyı flex konteyner yapıyoruz */
+  display: flex;
+  justify-content: center; /* yatay ortala */
+  align-items: center;     /* dikey ortala (gerekirse) */
+  width: 200px;            /* grafik boyutunu sabitliyoruz */
+  height: 300px;
+  margin: 0 auto 8px;     /* üst ve yan boşluk, alt 20px */
+  position: relative;
+}
+
+/* Responsive istersek genişliği %100 yapabiliriz */
+@media (max-width: 600px) {
+  .chart-container {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+
+.chart-container canvas {
+  /* Chart.js canvas'ı kapsayıcı boyutuna oturtsun */
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Legend’i de tam ortaya almak isterseniz: */
+.custom-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+  margin: 0 auto 8px;
+}
+
+/* Örnek legend kutucukları */
+.custom-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 20px;
+  width: fit-content;
+}
+
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 3px;
+}
+
+
+/*burayı değiştirdik  */
+.table-container {
+  margin-top: 1px;
+  overflow-x: auto; /* Mobilde tablo taşarsa kaydırma olur */
+}
+
+.table-container table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-container th {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.bus-distribution-page.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.bus-distribution-page.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+.bus-distribution-page.dark-mode table {
+  border-color: #fff;
+}
+
+.bus-distribution-page.light-mode table {
+  border-color: #000;
+}
+
+/* Dark mode için başlık yazı rengi */
+.bus-distribution-page.dark-mode th {
+  color: #fff !important;
+  background-color: #444;
+}
+
+/* Light Mode başlık yazı rengi */
+.bus-distribution-page.light-mode th {
+  color: #000;
+  background-color: #f2f2f2;
+}
+
+.bus-distribution-page.dark-mode .distribution-title {
+  color: #fff;
+}
+
+/* --------- Mobil Uyum için Media Query --------- */
+@media (max-width: 600px) {
+  .distribution-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .table-container table {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .table-container th,
+  .table-container td {
+    padding: 6px;
+  }
+}
+.chart-container canvas {
+  margin: auto;
+  display: block;
+
+}
+
+/* bunu ekle diğer custom-legandları sil */
+.custom-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto 5px;
+  width: fit-content;
+}
+/* bunu da ekle */
+.custom-legend div {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 16px;
+}
+/* bunu da ekle */
+.legend-box {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  display: inline-block;
+  border-radius: 3px;
+}

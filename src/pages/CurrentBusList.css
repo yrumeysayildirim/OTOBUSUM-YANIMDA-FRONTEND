@@ -1,0 +1,30 @@
+.current-bus-list-container {
+    padding: 20px;
+    background-color: #F2F2F2;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .current-bus-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .current-bus-table th,
+  .current-bus-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .current-bus-table th {
+    background-color: #eee;
+    font-weight: bold;
+  }
+  
+  .current-bus-table tr:hover {
+    background-color: #f9f9f9;
+  }

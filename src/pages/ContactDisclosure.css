@@ -1,0 +1,59 @@
+/* src/pages/ContactDisclosure.css */
+.contact-disclosure-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+}
+
+.contact-toggle {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contact-toggle:hover {
+  background-color: #eaeaea;
+}
+
+.contact-details {
+  background-color: #fff;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+  white-space: pre-wrap; /* Satır sonlarını uygular */
+}
+
+/* Dark Mode */
+.contact-disclosure-container.dark-mode .contact-toggle {
+  background-color: #444;
+  color: #fff;
+}
+
+.contact-disclosure-container.dark-mode .contact-toggle:hover {
+  background-color: #555;
+}
+
+.contact-disclosure-container.dark-mode .contact-details {
+  background-color: #333;
+  color: #eee;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+}
+
+/* Alt yazı metnini KVKK gibi yapmak için */
+.contact-disclosure-container.dark-mode .contact-details .address,
+.contact-disclosure-container.dark-mode .contact-details .phone {
+  background-color: #333;
+  color: #555;
+
+
+}

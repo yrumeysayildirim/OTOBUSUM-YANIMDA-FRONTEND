@@ -1,0 +1,106 @@
+.bus-schedule-page {
+  padding: 20px;
+  background-color: #F2F2F2;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.schedule-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ddd;
+  padding: 20px 24px; /* Yatay ve dikey boşluk artırıldı */
+  font-size: 18px; /* Yazı büyütüldü */
+  color: #333;
+  white-space: nowrap;
+}
+
+
+.schedule-table th {
+  background-color: #eee;
+  font-weight: bold;
+}
+.bus-schedule-page.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.bus-schedule-page.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+/* Genel hücre stili (temadan bağımsız kısmı) */
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ddd;
+  padding: 20px 24px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+/* Açık tema için yazı rengi */
+.bus-schedule-page.light-mode .schedule-table th,
+.bus-schedule-page.light-mode .schedule-table td {
+  color: #333;
+  background-color: #fff;
+}
+
+/* Koyu tema için yazı rengi */
+.bus-schedule-page.dark-mode .schedule-table th,
+.bus-schedule-page.dark-mode .schedule-table td {
+  color: #fff;
+  background-color: #444; /* isteğe göre koyu bir arka plan */
+}
+/* Dark Mode için başlık yazı rengi */
+.bus-schedule-page.dark-mode .page-title {
+  color: #fff;  /* Başlık rengini beyaz yapıyoruz */
+}
+@media (max-width: 768px) {
+  .schedule-table {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}

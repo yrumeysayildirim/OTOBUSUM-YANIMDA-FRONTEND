@@ -1,0 +1,65 @@
+/* RatingDisclosure.css */
+
+.rating-disclosure-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+}
+
+.rating-toggle {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.rating-toggle:hover {
+  background-color: #eaeaea;
+}
+
+.rating-content {
+  background-color: #fff;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 🌙 Dark Mode */
+.rating-disclosure-container.dark-mode .rating-toggle {
+  background-color: #444;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+.rating-disclosure-container.dark-mode .rating-toggle:hover {
+  background-color: #555;
+}
+
+.rating-disclosure-container.dark-mode .rating-content {
+  background-color: #333;
+  color: #eee;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+
+.feedback-thank-you {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  color: #333; /* Gündüz modu */
+}
+
+.rating-disclosure-container.dark-mode .feedback-thank-you {
+  color: #eee; /* Dark mode için açık renk */
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
