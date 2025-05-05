@@ -21,6 +21,19 @@ function convert_num_to_string_time(num) {
     return `${(hours % 24).toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
+function addFiveMinutes(timeStr) {
+    try {
+        const totalMinutes = convert_string_time_to_num(timeStr);
+        // Add 5 minutes
+        const newTotalMinutes = totalMinutes + 5;
+        // Convert back to string format
+        return convert_num_to_string_time(newTotalMinutes);
+    } catch (error) {
+        // Fallback in case of unexpected errors during conversion
+        console.error(`Error adding five minutes to ${timeStr}:`, error);
+        return timeStr; // Return original time if calculation fails
+    }
+}
 
 function BusSchedulePage() {
     const { busId } = useParams();
@@ -252,14 +265,39 @@ function BusSchedulePage() {
 
     // --- Data Structure for Rendering (Keep structure as requested) ---
     // This object is rebuilt on every render. It uses the latest state values.
+    /*
     const busSchedules = {
         "474": bus_474_weekdays.map((time, index) => ({ sefer: time, guncel: newTimes[index] ?? time })),
         "477": bus_477_weekdays.map((time, index) => ({ sefer: time, guncel: _477newTimes[index] ?? time })),
         "472": bus_472_weekdays.map((time, index) => ({ sefer: time, guncel: _472newTimes[index] ?? time })),
         "486": bus_486_weekdays.map((time, index) => ({ sefer: time, guncel: _486newTimes[index] ?? time })),
     };
-
+    */
     // Get the specific schedule based on the URL parameter
+
+    const busSchedules = {
+        "474": bus_474_weekdays.map((time, index) => ({
+            sefer: time,
+            // Use fetched time if available, otherwise show original time + 5 mins
+            guncel: newTimes[index] ?? addFiveMinutes(time)
+        })),
+        "477": bus_477_weekdays.map((time, index) => ({
+            sefer: time,
+            // Use fetched time if available, otherwise show original time + 5 mins
+            guncel: _477newTimes[index] ?? addFiveMinutes(time)
+        })),
+        "472": bus_472_weekdays.map((time, index) => ({
+            sefer: time,
+            // Use fetched time if available, otherwise show original time + 5 mins
+            guncel: _472newTimes[index] ?? addFiveMinutes(time)
+        })),
+        "486": bus_486_weekdays.map((time, index) => ({
+            sefer: time,
+            // Use fetched time if available, otherwise show original time + 5 mins
+            guncel: _486newTimes[index] ?? addFiveMinutes(time)
+        })),
+    };
+    
     const scheduleData = busSchedules[busId] || [];
 
 
