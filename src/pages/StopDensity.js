@@ -287,6 +287,7 @@ function StopDensityPage() {
       console.log("Rendering: Loading State");
       return (
         <div className={`stop-density-page ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+          <p>{t('yükleniyor', 'Durak yoğunluğu verileri yükleniyor...')}</p>
           <p>{t('loading', 'Loading stop density data...')}</p>
         </div>
       );
