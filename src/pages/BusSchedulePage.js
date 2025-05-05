@@ -282,23 +282,23 @@ function BusSchedulePage() {
     // --- useEffect Hooks (Keep separate as requested) ---
     useEffect(() => {
         // This will fetch data for 474 regardless of the busId in the URL
-        _474fetchTimes();
+        //_474fetchTimes();
         // If you only want to fetch for the specific busId, you'd need conditional logic here
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Runs once on mount
 
     useEffect(() => {
-        _477fetchTimes();
+        //_477fetchTimes();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        _472fetchTimes();
+        //_472fetchTimes();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        _486fetchTimes();
+        //_486fetchTimes();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
